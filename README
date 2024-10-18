@@ -1,0 +1,62 @@
+SenCluSumAI
+This repository contains code to preprocess, analyze, cluster, and summarize customer reviews from a dataset. The code is structured to be executed sequentially across different Python files, from 00_data_preprocessing to 03_mistral_summarizer.
+
+Dataset Source
+The dataset used in this project can be found here. The data contains customer reviews for various products.
+
+Project Structure
+The project consists of four main Python scripts, which should be executed in order:
+
+00_data_preprocessing:
+
+This script merges and preprocesses the dataset.
+Outputs a cleaned dataset, ready for analysis.
+01_sentiment_analysis:
+
+This script uses the outcome of the preprocessing step to fine-tune BERT for sentiment analysis.
+Saves the fine-tuned BERT model.
+Performs sentiment analysis on the reviews and generates sentiment scores.
+02_cluster_sbert:
+
+Uses the sentiment-analyzed data from 01_sentiment_analysis to perform clustering using Sentence-BERT (SBERT)(all-MiniLM-L6-v2).
+Clusters reviews into groups and counts how frequently unique products appear in each cluster.
+Outputs clustered data with product counts.
+03_mistral_summarizer:
+
+Based on the clusters generated in 02_cluster_sbert, this script assigns category names to clusters.
+The user can choose a category, and the script picks the top 3 products from that category.
+For each product, the model generates a title and summarizes the reviews for the user.
+How to Run
+
+Run the scripts in order:
+
+Start with preprocessing:
+
+bash
+Copy code
+python 00_data_preprocessing.py
+Then run the sentiment analysis:
+
+bash
+Copy code
+python 01_sentiment_analysis.py
+Perform clustering:
+
+bash
+Copy code
+python 02_cluster_sbert.py
+Finally, generate product titles and summaries:
+
+bash
+Copy code
+python 03_mistral_summarizer.py
+Project Dependencies
+Python 3.7+
+The required Python libraries are listed in the Requirements.txt file.
+
+Conclusion
+This project combines sentiment analysis and clustering to categorize and summarize customer reviews. It uses state-of-the-art models like BERT and Sentence-BERT to process the reviews and generate meaningful summaries and product titles based on user input.
+
+P.S: This is a work in progress and part of my AI learning journey. You can see the results in the top_products_summaries.txt for reference of the current status and quality of the output. 
+
+Feel free to explore and contribute!
